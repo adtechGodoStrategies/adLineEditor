@@ -35,6 +35,12 @@ def generate():
     endSettings = data.get('endSettings')
     endDate = data.get('endDate')
     endTime = data.get('endTime')
+    # Obtener el objetivo del usuario
+    goalUnits = int(data.get('goalUnits', 100))
+    creativeRotationType = data.get(
+        'creativeRotationType', 'EVEN')  # Nuevo campo
+    roadblockingType = data.get(
+        'roadblockingType', 'AS_MANY_AS_POSSIBLE')  # Nuevo campo
 
     # Mapeo de inventario a adUnitId
     inventory_map = {
@@ -147,8 +153,8 @@ def generate():
                 'orderId': order_id,
                 'startDateTimeType': startDateTimeType,
                 'unlimitedEndDateTime': unlimitedEndDateTime,
-                'creativeRotationType': 'EVEN',
-                'roadblockingType': 'AS_MANY_AS_POSSIBLE',
+                'creativeRotationType': creativeRotationType,  # Usar el valor del usuario
+                'roadblockingType': roadblockingType,  # Usar el valor del usuario
                 'childContentEligibility': 'ALLOWED',
                 'allowOverbook': 'true',
                 'skipInventoryCheck': 'true',
@@ -193,7 +199,10 @@ def generate():
                 },
                 'costType': 'CPM',
                 'costPerUnit': {'currencyCode': 'EUR', 'microAmount': "{:.0f}".format(price * 1000000)},
-                'primaryGoal': {'goalType': 'DAILY', 'units': 100}
+                'primaryGoal': {
+                    'goalType': 'DAILY',
+                    'units': goalUnits  # Establecer el objetivo con el valor del usuario
+                }
             }
 
             if startDateTime:

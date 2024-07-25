@@ -2355,3 +2355,71 @@
 [2024-07-25 09:54:40,276 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
 [2024-07-25 09:54:42,119 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
 [2024-07-25 09:54:43,050 - INFO] werkzeug: 127.0.0.1 - - [25/Jul/2024 09:54:43] "POST /generate HTTP/1.1" 200 -
+[2024-07-25 12:33:12,647 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 12:33:12,897 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 12:33:15,012 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 12:33:15,015 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 12:40:27,779 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 12:40:28,013 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 12:40:29,512 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 12:40:29,515 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 12:41:53,237 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 12:41:53,237 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 12:41:55,961 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-07-25 12:41:55,961 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-07-25 12:41:55,964 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 12:41:57,102 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 12:41:57,105 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 12:42:21,774 - INFO] werkzeug: 127.0.0.1 - - [25/Jul/2024 12:42:21] "OPTIONS /generate HTTP/1.1" 200 -
+[2024-07-25 12:42:21,800 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-07-25 12:42:24,558 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-07-25 12:42:26,513 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-07-25 12:42:29,057 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-07-25 12:42:29,955 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-07-25 12:42:31,473 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-07-25 12:42:32,580 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-07-25 12:42:33,892 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-07-25 12:42:34,852 - INFO] werkzeug: 127.0.0.1 - - [25/Jul/2024 12:42:34] "POST /generate HTTP/1.1" 200 -
+[2024-07-25 16:09:42,887 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 16:09:43,114 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 16:09:45,873 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 16:09:45,876 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 16:43:40,777 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 16:43:40,882 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 16:43:42,174 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 16:43:42,176 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 16:43:45,938 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 16:43:46,042 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 16:43:47,372 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 16:43:47,376 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 17:02:37,927 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 17:02:38,016 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 17:02:39,195 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 17:02:39,197 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 17:03:01,684 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\app.py', reloading
+[2024-07-25 17:03:01,790 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 17:03:02,986 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 17:03:02,989 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 17:03:57,229 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-07-25 17:03:57,229 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-07-25 17:03:57,229 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 17:03:58,320 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 17:03:58,322 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 17:04:02,538 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-07-25 17:04:02,538 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-07-25 17:04:02,541 - INFO] werkzeug:  * Restarting with stat
+[2024-07-25 17:04:03,659 - WARNING] werkzeug:  * Debugger is active!
+[2024-07-25 17:04:03,663 - INFO] werkzeug:  * Debugger PIN: 331-178-760
+[2024-07-25 17:04:56,402 - INFO] werkzeug: 127.0.0.1 - - [25/Jul/2024 17:04:56] "OPTIONS /generate HTTP/1.1" 200 -
+[2024-07-25 17:04:56,424 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-07-25 17:04:59,384 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-07-25 17:05:01,230 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-07-25 17:05:04,629 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-07-25 17:05:05,575 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-07-25 17:05:07,809 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-07-25 17:05:08,286 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-07-25 17:05:10,144 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-07-25 17:05:11,047 - INFO] werkzeug: 127.0.0.1 - - [25/Jul/2024 17:05:11] "POST /generate HTTP/1.1" 200 -

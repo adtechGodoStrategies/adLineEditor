@@ -17,6 +17,9 @@ function App() {
   const [endSettings, setEndSettings] = useState('UNLIMITED');
   const [endDate, setEndDate] = useState('');
   const [endTime, setEndTime] = useState('00:00');
+  const [goalUnits, setGoalUnits] = useState(100);
+  const [creativeRotationType, setCreativeRotationType] = useState('EVEN');  // Nuevo estado
+  const [roadblockingType, setRoadblockingType] = useState('AS_MANY_AS_POSSIBLE');  // Nuevo estado
   const [resultado, setResultado] = useState('');
   const [lineItems, setLineItems] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -55,7 +58,10 @@ function App() {
         customTime: customTime,
         endSettings: endSettings,
         endDate: endDate,
-        endTime: endTime
+        endTime: endTime,
+        goalUnits: goalUnits,
+        creativeRotationType: creativeRotationType,  // Enviar valor
+        roadblockingType: roadblockingType  // Enviar valor
       })
     });
 
@@ -203,6 +209,38 @@ function App() {
             />
           </>
         )}
+        <label htmlFor="goalUnits">Goal (% of total impressions):</label>
+        <input 
+          type="number" 
+          id="goalUnits" 
+          value={goalUnits} 
+          onChange={(e) => setGoalUnits(parseInt(e.target.value))} 
+          required 
+        />
+        <label htmlFor="creativeRotationType">Rotate creatives:</label>
+        <select 
+          id="creativeRotationType" 
+          value={creativeRotationType} 
+          onChange={(e) => setCreativeRotationType(e.target.value)} 
+          required
+        >
+          <option value="EVEN">Evenly</option>
+          <option value="OPTIMIZED">Optimised</option>
+          <option value="WEIGHTED">Weighted</option>
+          <option value="SEQUENTIAL">Sequential</option>
+        </select>
+        <label htmlFor="roadblockingType">Display creatives:</label>
+        <select 
+          id="roadblockingType" 
+          value={roadblockingType} 
+          onChange={(e) => setRoadblockingType(e.target.value)} 
+          required
+        >
+          <option value="ONE_OR_MORE">One or more</option>
+          <option value="ONLY_ONE">Only one</option>
+          <option value="AS_MANY_AS_POSSIBLE">As many as possible</option>
+          <option value="ALL_ROADBLOCK">All</option>
+        </select>
         <label htmlFor="price">Price:</label>
         <input 
           type="number" 
