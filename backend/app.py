@@ -41,6 +41,7 @@ def generate():
     creativeRotationType = data.get('creativeRotationType', 'EVEN')
     roadblockingType = data.get('roadblockingType', 'AS_MANY_AS_POSSIBLE')
     customTargeting = data.get('customTargeting', [])
+    placement = data.get('placement')
 
     inventory_map = {
         'LV': '62332164',
@@ -180,18 +181,10 @@ def generate():
                                 'children': [
                                     {'xsi_type': 'CustomCriteria', 'keyId': 147444,
                                         'operator': 'IS', 'valueIds': customTargeting},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 217884,
-                                        'operator': 'IS', 'valueIds': [id_price]},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 147684,
-                                        'operator': 'IS', 'valueIds': [84198161484]},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 154044,
-                                        'operator': 'IS', 'valueIds': [104139487764]},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 12084959,
-                                        'operator': 'IS', 'valueIds': [448206030155]},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 11921921, 'operator': 'IS', 'valueIds': [
-                                        448131355960, 448148134169]},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 147444,
-                                        'operator': 'IS_NOT', 'valueIds': [448561956455]},
+                                        'operator': 'IS', 'valueIds': [placement]},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 217884,
+                                        'operator': 'IS', 'valueIds': [id_price]}
                                 ]
                             }
                         ]
@@ -265,7 +258,7 @@ def generate():
             creative_association = {
                 'creativeId': created_creative, 'lineItemId': created_line_item}
             line_item_creative_association_service.createLineItemCreativeAssociations([
-                creative_association])
+                                                                                      creative_association])
             f.write(f"Creative assigned to Line Item with ID {
                     created_creative}\n")
             print(f"Creative assigned to Line Item with ID {created_creative}")
