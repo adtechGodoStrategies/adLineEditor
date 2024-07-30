@@ -8,8 +8,8 @@ function App() {
   const [lineNameTemplate, setLineNameTemplate] = useState('');
   const [lineItemType, setLineItemType] = useState('');
   const [priority, setPriority] = useState('');
-  const [inventoryOption, setInventoryOption] = useState('');
-  const [inventoryInclude, setInventoryInclude] = useState('');
+  const [inventoryInclude, setInventoryInclude] = useState([]);
+  const [inventoryExclude, setInventoryExclude] = useState([]);
   const [expectedCreative, setExpectedCreative] = useState('');
   const [deliverySettings, setDeliverySettings] = useState('IMMEDIATELY');
   const [customDate, setCustomDate] = useState('');
@@ -18,8 +18,9 @@ function App() {
   const [endDate, setEndDate] = useState('');
   const [endTime, setEndTime] = useState('00:00');
   const [goalUnits, setGoalUnits] = useState(100);
-  const [creativeRotationType, setCreativeRotationType] = useState('EVEN');  // Nuevo estado
-  const [roadblockingType, setRoadblockingType] = useState('AS_MANY_AS_POSSIBLE');  // Nuevo estado
+  const [creativeRotationType, setCreativeRotationType] = useState('EVEN');
+  const [roadblockingType, setRoadblockingType] = useState('AS_MANY_AS_POSSIBLE');
+  const [customTargeting, setCustomTargeting] = useState([]);
   const [resultado, setResultado] = useState('');
   const [lineItems, setLineItems] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -29,11 +30,6 @@ function App() {
     setIsGenerating(true);
     setLineItems([]);
     setResultado('');
-
-    let inventory = inventoryOption;
-    if (inventoryOption === 'include') {
-      inventory = `include_${inventoryInclude}`;
-    }
 
     let deliverySetting = deliverySettings;
     if (deliverySettings === 'CUSTOM') {
@@ -52,7 +48,8 @@ function App() {
         line_name_template: lineNameTemplate,
         lineItemType: lineItemType.toUpperCase(),
         priority,
-        inventory,
+        inventoryInclude,
+        inventoryExclude,
         expectedCreative,
         deliverySettings: deliverySetting,
         customTime: customTime,
@@ -60,8 +57,9 @@ function App() {
         endDate: endDate,
         endTime: endTime,
         goalUnits: goalUnits,
-        creativeRotationType: creativeRotationType,  // Enviar valor
-        roadblockingType: roadblockingType  // Enviar valor
+        creativeRotationType: creativeRotationType,
+        roadblockingType: roadblockingType,
+        customTargeting
       })
     });
 
@@ -113,33 +111,6 @@ function App() {
           onChange={(e) => setPriority(e.target.value)} 
           required 
         />
-        <label htmlFor="inventoryOption">Inventory Option:</label>
-        <select 
-          id="inventoryOption" 
-          value={inventoryOption} 
-          onChange={(e) => setInventoryOption(e.target.value)} 
-          required
-        >
-          <option value="">Selecciona una opción</option>
-          <option value="include">Include</option>
-          <option value="exclude">Exclude</option>
-        </select>
-        {inventoryOption === 'include' && (
-          <>
-            <label htmlFor="inventoryInclude">Inventory Include:</label>
-            <select 
-              id="inventoryInclude" 
-              value={inventoryInclude} 
-              onChange={(e) => setInventoryInclude(e.target.value)} 
-              required
-            >
-              <option value="">Selecciona una opción</option>
-              <option value="LV">LV</option>
-              <option value="MD">MD</option>
-              <option value="RAC1">RAC1</option>
-            </select>
-          </>
-        )}
         <label htmlFor="expectedCreative">Expected Creative Size:</label>
         <select 
           id="expectedCreative" 
@@ -236,10 +207,47 @@ function App() {
           onChange={(e) => setRoadblockingType(e.target.value)} 
           required
         >
-          <option value="ONE_OR_MORE">One or more</option>
           <option value="ONLY_ONE">Only one</option>
+          <option value="ONE_OR_MORE">One or more</option>
           <option value="AS_MANY_AS_POSSIBLE">As many as possible</option>
           <option value="ALL_ROADBLOCK">All</option>
+        </select>
+        <label htmlFor="inventoryInclude">Inventory Include:</label>
+        <select 
+          id="inventoryInclude" 
+          multiple 
+          value={inventoryInclude} 
+          onChange={(e) => setInventoryInclude([...e.target.selectedOptions].map(option => option.value))} 
+          required
+        >
+          <option value="LV">LV</option>
+          <option value="MD">MD</option>
+          <option value="RAC1">RAC1</option>
+        </select>
+        <label htmlFor="inventoryExclude">Inventory Exclude:</label>
+        <select 
+          id="inventoryExclude" 
+          multiple 
+          value={inventoryExclude} 
+          onChange={(e) => setInventoryExclude([...e.target.selectedOptions].map(option => option.value))} 
+          required
+        >
+          <option value="comer">Comer</option>
+          <option value="historiayvida">Historia y Vida</option>
+          <option value="magazine">Magazine</option>
+          <option value="motor">Motor</option>
+        </select>
+        <label htmlFor="customTargeting">Custom Targeting (Category):</label>
+        <select 
+          id="customTargeting" 
+          multiple 
+          value={customTargeting} 
+          onChange={(e) => setCustomTargeting([...e.target.selectedOptions].map(option => option.value))} 
+          required
+        >
+          <option value="208473659844">Story Viral</option>
+          <option value="174650883684">Story</option>
+          <option value="189633282084">Live</option>
         </select>
         <label htmlFor="price">Price:</label>
         <input 

@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import _locale
 import re
 from datetime import datetime
-import time
 from googleads import ad_manager
 
 _locale._getdefaultlocale = (lambda *args: ['en_US', 'UTF-8'])
@@ -22,46 +21,47 @@ network_service = ad_manager_client.GetService(
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
+    print('Received Data:', data)
+
     orden = data.get('orden')
     price = float(data.get('price', 12.0))
     limit = float(data.get('limit', 20.0))
     line_name_template = data.get('line_name_template')
     lineItemType = data.get('lineItemType')
     priority = data.get('priority')
-    inventory = data.get('inventory')
+    inventoryInclude = data.get('inventoryInclude', [])
+    inventoryExclude = data.get('inventoryExclude', [])
     expectedCreative = data.get('expectedCreative')
     deliverySettings = data.get('deliverySettings')
     customTime = data.get('customTime')
     endSettings = data.get('endSettings')
     endDate = data.get('endDate')
     endTime = data.get('endTime')
-    # Obtener el objetivo del usuario
     goalUnits = int(data.get('goalUnits', 100))
-    creativeRotationType = data.get(
-        'creativeRotationType', 'EVEN')  # Nuevo campo
-    roadblockingType = data.get(
-        'roadblockingType', 'AS_MANY_AS_POSSIBLE')  # Nuevo campo
+    creativeRotationType = data.get('creativeRotationType', 'EVEN')
+    roadblockingType = data.get('roadblockingType', 'AS_MANY_AS_POSSIBLE')
+    customTargeting = data.get('customTargeting', [])
 
-    # Mapeo de inventario a adUnitId
     inventory_map = {
         'LV': '62332164',
         'MD': '57362484',
         'RAC1': '70115964'
     }
 
-    if 'include_' in inventory:
-        inventory_key = inventory.split('include_')[1]
-        adUnitId = inventory_map.get(inventory_key)
-    elif inventory == 'exclude':
-        adUnitId = 'exclude_adUnitId'
-    else:
-        return jsonify({'error': 'Invalid inventory'}), 400
+    exclude_map = {
+        'comer': '66970884',
+        'historiayvida': '21799279351',
+        'magazine': '21960565090',
+        'motor': '22069771456'
+    }
 
-    if not adUnitId:
-        return jsonify({'error': 'Invalid inventory'}), 400
+    targetedAdUnits = [{'adUnitId': inventory_map[unit]}
+                       for unit in inventoryInclude if unit in inventory_map]
+    excludedAdUnits = [{'adUnitId': exclude_map[unit]}
+                       for unit in inventoryExclude if unit in exclude_map]
 
-    print(lineItemType)
-    print(priority)
+    if not targetedAdUnits and not excludedAdUnits:
+        return jsonify({'error': 'At least one inventory unit is required'}), 400
 
     if expectedCreative == '728x90':
         creative_placeholder_size = {'width': '728', 'height': '90'}
@@ -103,7 +103,7 @@ def generate():
                 f.write(f"{i}. Network '{network['networkCode']}' '{
                         network['displayName']}'\n")
                 f.write("\n")
-            num_red = 0  # Assuming the first network for simplicity
+            num_red = 0
             current_network = test_redes[num_red]
             ad_manager_client.network_code = current_network['networkCode']
             f.write(f"\nCurrent network: {
@@ -153,8 +153,8 @@ def generate():
                 'orderId': order_id,
                 'startDateTimeType': startDateTimeType,
                 'unlimitedEndDateTime': unlimitedEndDateTime,
-                'creativeRotationType': creativeRotationType,  # Usar el valor del usuario
-                'roadblockingType': roadblockingType,  # Usar el valor del usuario
+                'creativeRotationType': creativeRotationType,
+                'roadblockingType': roadblockingType,
                 'childContentEligibility': 'ALLOWED',
                 'allowOverbook': 'true',
                 'skipInventoryCheck': 'true',
@@ -167,8 +167,8 @@ def generate():
                         'targetedLocations': [{'id': '2724', 'displayName': 'SPAIN'}, {'id': '2484', 'displayName': 'MEXICO'}]
                     },
                     'inventoryTargeting': {
-                        'targetedAdUnits': [{'adUnitId': adUnitId}],
-                        'excludedAdUnits': [{'adUnitId': '66970884'}, {'adUnitId': '21799279351'}, {'adUnitId': '21960565090'}, {'adUnitId': '22069771456'}]
+                        'targetedAdUnits': targetedAdUnits,
+                        'excludedAdUnits': excludedAdUnits
                     },
                     'customTargeting': {
                         'xsi_type': 'CustomCriteriaSet',
@@ -178,8 +178,10 @@ def generate():
                                 'xsi_type': 'CustomCriteriaSet',
                                 'logicalOperator': 'AND',
                                 'children': [
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 147444, 'operator': 'IS', 'valueIds': [
-                                        208473659844, 189633282084, 174650883684]},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 147444,
+                                        'operator': 'IS', 'valueIds': customTargeting},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 217884,
+                                        'operator': 'IS', 'valueIds': [id_price]},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 147684,
                                         'operator': 'IS', 'valueIds': [84198161484]},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 154044,
@@ -190,8 +192,6 @@ def generate():
                                         448131355960, 448148134169]},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 147444,
                                         'operator': 'IS_NOT', 'valueIds': [448561956455]},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 217884,
-                                        'operator': 'IS', 'valueIds': [id_price]}
                                 ]
                             }
                         ]
@@ -201,9 +201,12 @@ def generate():
                 'costPerUnit': {'currencyCode': 'EUR', 'microAmount': "{:.0f}".format(price * 1000000)},
                 'primaryGoal': {
                     'goalType': 'DAILY',
-                    'units': goalUnits  # Establecer el objetivo con el valor del usuario
+                    'units': goalUnits
                 }
             }
+
+            if not targetedAdUnits and not excludedAdUnits:
+                return jsonify({'error': 'At least one inventory unit is required'}), 400
 
             if startDateTime:
                 line_item['startDateTime'] = {
@@ -256,36 +259,13 @@ def generate():
                   created_creative['id']} and name {created_creative['name']}")
             return created_creative['id']
 
-        def create_creative_item_120_600(order_id):
-            creative_service = ad_manager_client.GetService(
-                'CreativeService', version='v202405')
-            with open('img/1x1.jpg', 'rb') as image:
-                image_data = image.read()
-            creative_asset = {'xsi_type': 'CreativeAsset',
-                              'fileName': 'image.jpg', 'assetByteArray': image_data}
-            creative = {
-                'xsi_type': 'ImageCreative',
-                'name': f'120x600',
-                'advertiserId': get_advertiser_id(order_id),
-                'size': {'width': '120', 'height': '600'},
-                'primaryImageAsset': creative_asset,
-                'destinationUrl': 'https://www.lavanguardia.com/',
-                'overrideSize': True,
-            }
-            created_creative = creative_service.createCreatives([creative])[0]
-            f.write(f"New Creative created with ID {
-                    created_creative['id']} and name {created_creative['name']}\n")
-            print(f"New Creative created with ID {
-                  created_creative['id']} and name {created_creative['name']}")
-            return created_creative['id']
-
         def association_line_with_creative(created_line_item, created_creative):
-            line_item_creative_assosiation_service = ad_manager_client.GetService(
+            line_item_creative_association_service = ad_manager_client.GetService(
                 'LineItemCreativeAssociationService', version='v202405')
             creative_association = {
                 'creativeId': created_creative, 'lineItemId': created_line_item}
-            line_item_creative_assosiation_service.createLineItemCreativeAssociations([
-                                                                                      creative_association])
+            line_item_creative_association_service.createLineItemCreativeAssociations([
+                creative_association])
             f.write(f"Creative assigned to Line Item with ID {
                     created_creative}\n")
             print(f"Creative assigned to Line Item with ID {created_creative}")
@@ -335,10 +315,9 @@ def generate():
 
             line_item_id, line_item_name = create_line_item(
                 order_id, line_name, price, id_price)
-            for n in range(1, 2):
-                creative_id = create_creative(
-                    order_id, creative_placeholder_size['width'], creative_placeholder_size['height'])
-                association_line_with_creative(line_item_id, creative_id)
+            creative_id = create_creative(
+                order_id, creative_placeholder_size['width'], creative_placeholder_size['height'])
+            association_line_with_creative(line_item_id, creative_id)
             price = round(price + 0.50, 2)
             updated_count += 1
 
