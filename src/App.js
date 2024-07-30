@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
   const [placement, setPlacement] = useState('');
   const [diseño, setDiseño] = useState('');
   const [articleCount, setArticleCount] = useState('');
+  const [hbDeal, setHbDeal] = useState([]);
   const [resultado, setResultado] = useState('');
   const [lineItems, setLineItems] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -49,7 +50,7 @@ function App() {
         inventoryInclude,
         inventoryExclude,
         expectedCreative,
-        deliverySettings: deliverySettings === 'CUSTOM' ? customDate : deliverySettings,
+        deliverySettings,
         customTime,
         endSettings,
         endDate,
@@ -61,6 +62,7 @@ function App() {
         placement,
         diseño,
         articleCount,
+        hbDeal
       })
     });
 
@@ -74,6 +76,17 @@ function App() {
       setResultado('Error al crear líneas.');
     }
     setIsGenerating(false);
+  };
+
+  const handleSelectChange = (e, setter) => {
+    const options = e.target.options;
+    const selectedValues = [];
+    for (const option of options) {
+      if (option.selected) {
+        selectedValues.push(option.value);
+      }
+    }
+    setter(selectedValues);
   };
 
   return (
@@ -112,29 +125,6 @@ function App() {
           onChange={(e) => setPriority(e.target.value)} 
           required 
         />
-        <label htmlFor="inventoryInclude">Inventory Include:</label>
-        <select
-          id="inventoryInclude"
-          multiple
-          value={inventoryInclude}
-          onChange={(e) => setInventoryInclude([...e.target.selectedOptions].map(option => option.value))}
-        >
-          <option value="LV">LV</option>
-          <option value="MD">MD</option>
-          <option value="RAC1">RAC1</option>
-        </select>
-        <label htmlFor="inventoryExclude">Inventory Exclude:</label>
-        <select
-          id="inventoryExclude"
-          multiple
-          value={inventoryExclude}
-          onChange={(e) => setInventoryExclude([...e.target.selectedOptions].map(option => option.value))}
-        >
-          <option value="comer">Comer</option>
-          <option value="historiayvida">Historia y Vida</option>
-          <option value="magazine">Magazine</option>
-          <option value="motor">Motor</option>
-        </select>
         <label htmlFor="expectedCreative">Expected Creative Size:</label>
         <select 
           id="expectedCreative" 
@@ -236,45 +226,89 @@ function App() {
           <option value="AS_MANY_AS_POSSIBLE">As many as possible</option>
           <option value="ALL_ROADBLOCK">All</option>
         </select>
-        <label htmlFor="customTargeting">Custom Targeting:</label>
-        <select
-          id="customTargeting"
-          multiple
-          value={customTargeting}
-          onChange={(e) => setCustomTargeting([...e.target.selectedOptions].map(option => parseInt(option.value)))}
+        <label htmlFor="inventoryInclude">Inventory Include:</label>
+        <select 
+          id="inventoryInclude" 
+          multiple 
+          value={inventoryInclude} 
+          onChange={(e) => handleSelectChange(e, setInventoryInclude)} 
+          required
         >
-          <option value="208473659844">Story Viral</option>
-          <option value="174650883684">Story</option>
-          <option value="189633282084">Live</option>
+          <option value="LV">LV</option>
+          <option value="MD">MD</option>
+          <option value="RAC1">RAC1</option>
+        </select>
+        <label htmlFor="inventoryExclude">Inventory Exclude:</label>
+        <select 
+          id="inventoryExclude" 
+          multiple 
+          value={inventoryExclude} 
+          onChange={(e) => handleSelectChange(e, setInventoryExclude)} 
+          required
+        >
+          <option value="comer">Comer</option>
+          <option value="historiayvida">Historia y Vida</option>
+          <option value="magazine">Magazine</option>
+          <option value="motor">Motor</option>
+        </select>
+        <label htmlFor="customTargeting">Custom Targeting:</label>
+        <select 
+          id="customTargeting" 
+          multiple 
+          value={customTargeting} 
+          onChange={(e) => handleSelectChange(e, setCustomTargeting)} 
+          required
+        >
+          <option value="208473659844">story-viral</option>
+          <option value="174650883684">story</option>
+          <option value="189633282084">live</option>
         </select>
         <label htmlFor="placement">Placement:</label>
         <select 
           id="placement" 
           value={placement} 
           onChange={(e) => setPlacement(e.target.value)} 
+          required
         >
           <option value="">Selecciona una opción</option>
-          <option value="84198161484">Mega1</option>
+          <option value="84198161484">posición mega1</option>
         </select>
         <label htmlFor="diseño">Diseño:</label>
         <select 
           id="diseño" 
           value={diseño} 
           onChange={(e) => setDiseño(e.target.value)} 
+          required
         >
           <option value="">Selecciona una opción</option>
-          <option value="104139488484">XS</option>
-          <option value="104139488004">SM</option>
-          <option value="104139487764">MD</option>
+          <option value="104139488484">xs</option>
+          <option value="104139488004">sm</option>
+          <option value="104139487764">md</option>
         </select>
         <label htmlFor="articleCount">Article Count:</label>
         <select 
           id="articleCount" 
           value={articleCount} 
           onChange={(e) => setArticleCount(e.target.value)} 
+          required
         >
           <option value="">Selecciona una opción</option>
           <option value="448206030155">1</option>
+        </select>
+        <label htmlFor="hbDeal">HB Deal:</label>
+        <select 
+          id="hbDeal" 
+          multiple 
+          value={hbDeal} 
+          onChange={(e) => handleSelectChange(e, setHbDeal)} 
+          required
+        >
+          <option value="448131355960">ramkt</option>
+          <option value="448290974564">appnexus</option>
+          <option value="448995603719">6679bf7986</option>
+          <option value="448148134169">1jtx0Zr90r</option>
+          <option value="448995234300">86a6fb0e60</option>
+          <option value="448148134169">1jtx0Zr90r</option>
         </select>
         <label htmlFor="price">Price:</label>
         <input 
