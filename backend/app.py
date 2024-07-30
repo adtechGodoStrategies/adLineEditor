@@ -42,6 +42,8 @@ def generate():
     roadblockingType = data.get('roadblockingType', 'AS_MANY_AS_POSSIBLE')
     customTargeting = data.get('customTargeting', [])
     placement = data.get('placement')
+    diseño = data.get('diseño')
+    articleCount = data.get('articleCount')
 
     inventory_map = {
         'LV': '62332164',
@@ -181,8 +183,12 @@ def generate():
                                 'children': [
                                     {'xsi_type': 'CustomCriteria', 'keyId': 147444,
                                         'operator': 'IS', 'valueIds': customTargeting},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 147684,
-                                        'operator': 'IS', 'valueIds': [placement]},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 147684, 'operator': 'IS', 'valueIds': [
+                                        int(placement)] if placement else []},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 154044, 'operator': 'IS', 'valueIds': [
+                                        int(diseño)] if diseño else []},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 12084959, 'operator': 'IS', 'valueIds': [
+                                        int(articleCount)] if articleCount else []},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 217884,
                                         'operator': 'IS', 'valueIds': [id_price]}
                                 ]
