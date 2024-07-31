@@ -4,6 +4,7 @@ import _locale
 import re
 from datetime import datetime
 from googleads import ad_manager
+import time
 
 _locale._getdefaultlocale = (lambda *args: ['en_US', 'UTF-8'])
 
@@ -16,6 +17,10 @@ ad_manager_client = ad_manager.AdManagerClient.LoadFromStorage()
 # Connect to the Ad Manager network
 network_service = ad_manager_client.GetService(
     'NetworkService', version='v202405')
+
+ORDER_LINE_ITEM_LIMIT = 100
+RETRY_LIMIT = 3
+RETRY_DELAY = 5  # seconds
 
 
 @app.route('/generate', methods=['POST'])
@@ -239,13 +244,24 @@ def generate():
                     'timeZoneId': 'Europe/Madrid'
                 }
 
-            created_line_item = line_item_service.createLineItems([line_item])[
-                0]
-            f.write(f"New Line Item created with ID {
-                    created_line_item['id']} and name {created_line_item['name']}\n")
-            print(f"New Line Item created with ID {
-                  created_line_item['id']} and name {created_line_item['name']}")
-            return created_line_item['id'], created_line_item['name']
+            for attempt in range(RETRY_LIMIT):
+                try:
+                    created_line_item = line_item_service.createLineItems([line_item])[
+                        0]
+                    f.write(f"New Line Item created with ID {
+                            created_line_item['id']} and name {created_line_item['name']}\n")
+                    print(f"New Line Item created with ID {
+                          created_line_item['id']} and name {created_line_item['name']}")
+                    return created_line_item['id'], created_line_item['name']
+                except ad_manager.errors.AdManagerError as e:
+                    if "CONCURRENT_MODIFICATION" in str(e):
+                        print(f"Concurrent modification error, attempt {
+                              attempt + 1}/{RETRY_LIMIT}. Retrying in {RETRY_DELAY} seconds...")
+                        time.sleep(RETRY_DELAY)
+                    else:
+                        raise e
+            raise Exception(f"Failed to create line item after {
+                            RETRY_LIMIT} attempts due to concurrent modification errors.")
 
         def create_creative(order_id, width, height):
             creative_service = ad_manager_client.GetService(
@@ -314,17 +330,31 @@ def generate():
             return jsonify({'error': 'Order not found'}), 404
 
         line_items = select_and_print_lines(order_id)
+        existing_line_item_count = len(line_items)
+        batch_count = 0
+
         while price <= limit:
             id_price = get_all_hb_pb("{:.2f}".format(price))
-            line_name = f"{line_name_template} {price}"
+            while existing_line_item_count < ORDER_LINE_ITEM_LIMIT and price <= limit:
+                line_name = f"{line_name_template} {price}"
+                try:
+                    line_item_id, line_item_name = create_line_item(
+                        order_id, line_name, price, id_price)
+                    creative_id = create_creative(
+                        order_id, creative_placeholder_size['width'], creative_placeholder_size['height'])
+                    association_line_with_creative(line_item_id, creative_id)
+                    price = round(price + 0.01, 2)
+                    existing_line_item_count += 1
+                    updated_count += 1
+                except Exception as e:
+                    print(f"Error creating line item at price {price}: {e}")
+                    break
 
-            line_item_id, line_item_name = create_line_item(
-                order_id, line_name, price, id_price)
-            creative_id = create_creative(
-                order_id, creative_placeholder_size['width'], creative_placeholder_size['height'])
-            association_line_with_creative(line_item_id, creative_id)
-            price = round(price + 0.50, 2)
-            updated_count += 1
+            if existing_line_item_count >= ORDER_LINE_ITEM_LIMIT:
+                print(f"Reached line item limit for order at price {
+                      price}. Continuing with next batch...")
+                existing_line_item_count = 0
+                batch_count += 1
 
         f.write(f"Total line items updated: {updated_count}\n")
         print(f"Total line items updated: {updated_count}")
