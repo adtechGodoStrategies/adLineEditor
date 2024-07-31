@@ -45,6 +45,7 @@ def generate():
     diseño = data.get('diseño')
     articleCount = data.get('articleCount')
     hbDeal = data.get('hbDeal', [])
+    hbDealNone = data.get('hbDealNone', [])
 
     inventory_map = {
         'LV': '62332164',
@@ -190,8 +191,10 @@ def generate():
                                         int(diseño)] if diseño else []},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 12084959, 'operator': 'IS', 'valueIds': [
                                         int(articleCount)] if articleCount else []},
-                                    {'xsi_type': 'CustomCriteria', 'keyId': 11921921,
-                                        'operator': 'IS', 'valueIds': hbDeal},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 11921921, 'operator': 'IS', 'valueIds': [
+                                        int(value) for value in hbDeal]},
+                                    {'xsi_type': 'CustomCriteria', 'keyId': 11921921, 'operator': 'IS_NOT', 'valueIds': [
+                                        int(value) for value in hbDealNone]},
                                     {'xsi_type': 'CustomCriteria', 'keyId': 217884,
                                         'operator': 'IS', 'valueIds': [id_price]}
                                 ]

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
   const [diseño, setDiseño] = useState('');
   const [articleCount, setArticleCount] = useState('');
   const [hbDeal, setHbDeal] = useState([]);
+  const [hbDealNone, setHbDealNone] = useState([]);
   const [resultado, setResultado] = useState('');
   const [lineItems, setLineItems] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -34,6 +35,11 @@ function App() {
     setIsGenerating(true);
     setLineItems([]);
     setResultado('');
+
+    let deliverySetting = deliverySettings;
+    if (deliverySettings === 'CUSTOM') {
+      deliverySetting = customDate;
+    }
 
     const response = await fetch('http://127.0.0.1:5000/generate', {
       method: 'POST',
@@ -50,19 +56,20 @@ function App() {
         inventoryInclude,
         inventoryExclude,
         expectedCreative,
-        deliverySettings,
-        customTime,
-        endSettings,
-        endDate,
-        endTime,
-        goalUnits,
-        creativeRotationType,
-        roadblockingType,
+        deliverySettings: deliverySetting,
+        customTime: customTime,
+        endSettings: endSettings,
+        endDate: endDate,
+        endTime: endTime,
+        goalUnits: goalUnits,
+        creativeRotationType: creativeRotationType,
+        roadblockingType: roadblockingType,
         customTargeting,
         placement,
         diseño,
         articleCount,
-        hbDeal
+        hbDeal,
+        hbDealNone
       })
     });
 
@@ -76,17 +83,6 @@ function App() {
       setResultado('Error al crear líneas.');
     }
     setIsGenerating(false);
-  };
-
-  const handleSelectChange = (e, setter) => {
-    const options = e.target.options;
-    const selectedValues = [];
-    for (const option of options) {
-      if (option.selected) {
-        selectedValues.push(option.value);
-      }
-    }
-    setter(selectedValues);
   };
 
   return (
@@ -229,9 +225,9 @@ function App() {
         <label htmlFor="inventoryInclude">Inventory Include:</label>
         <select 
           id="inventoryInclude" 
-          multiple 
           value={inventoryInclude} 
-          onChange={(e) => handleSelectChange(e, setInventoryInclude)} 
+          onChange={(e) => setInventoryInclude([...e.target.selectedOptions].map(option => option.value))} 
+          multiple
           required
         >
           <option value="LV">LV</option>
@@ -241,9 +237,9 @@ function App() {
         <label htmlFor="inventoryExclude">Inventory Exclude:</label>
         <select 
           id="inventoryExclude" 
-          multiple 
           value={inventoryExclude} 
-          onChange={(e) => handleSelectChange(e, setInventoryExclude)} 
+          onChange={(e) => setInventoryExclude([...e.target.selectedOptions].map(option => option.value))} 
+          multiple
           required
         >
           <option value="comer">Comer</option>
@@ -251,19 +247,19 @@ function App() {
           <option value="magazine">Magazine</option>
           <option value="motor">Motor</option>
         </select>
-        <label htmlFor="customTargeting">Custom Targeting:</label>
+        <label htmlFor="customTargeting">Custom Targeting (Cat):</label>
         <select 
           id="customTargeting" 
-          multiple 
           value={customTargeting} 
-          onChange={(e) => handleSelectChange(e, setCustomTargeting)} 
+          onChange={(e) => setCustomTargeting([...e.target.selectedOptions].map(option => option.value))} 
+          multiple
           required
         >
-          <option value="208473659844">story-viral</option>
-          <option value="174650883684">story</option>
-          <option value="189633282084">live</option>
+          <option value="208473659844">Story Viral</option>
+          <option value="174650883684">Story</option>
+          <option value="189633282084">Live</option>
         </select>
-        <label htmlFor="placement">Placement:</label>
+        <label htmlFor="placement">Placement (Mega1):</label>
         <select 
           id="placement" 
           value={placement} 
@@ -271,7 +267,7 @@ function App() {
           required
         >
           <option value="">Selecciona una opción</option>
-          <option value="84198161484">posición mega1</option>
+          <option value="84198161484">Mega1</option>
         </select>
         <label htmlFor="diseño">Diseño:</label>
         <select 
@@ -281,9 +277,9 @@ function App() {
           required
         >
           <option value="">Selecciona una opción</option>
-          <option value="104139488484">xs</option>
-          <option value="104139488004">sm</option>
-          <option value="104139487764">md</option>
+          <option value="104139488484">XS</option>
+          <option value="104139488004">SM</option>
+          <option value="104139487764">MD</option>
         </select>
         <label htmlFor="articleCount">Article Count:</label>
         <select 
@@ -295,12 +291,27 @@ function App() {
           <option value="">Selecciona una opción</option>
           <option value="448206030155">1</option>
         </select>
-        <label htmlFor="hbDeal">HB Deal:</label>
+        <label htmlFor="hbDeal">HB Deal (IS any of):</label>
         <select 
           id="hbDeal" 
-          multiple 
           value={hbDeal} 
-          onChange={(e) => handleSelectChange(e, setHbDeal)} 
+          onChange={(e) => setHbDeal([...e.target.selectedOptions].map(option => option.value))} 
+          multiple
+          required
+        >
+          <option value="448131355960">ramkt</option>
+          <option value="448290974564">appnexus</option>
+          <option value="448995603719">6679bf7986</option>
+          <option value="448148134169">1jtx0Zr90r</option>
+          <option value="448995234300">86a6fb0e60</option>
+          <option value="448148134169">1jtx0Zr90r</option>
+        </select>
+        <label htmlFor="hbDealNone">HB Deal (IS none of):</label>
+        <select 
+          id="hbDealNone" 
+          value={hbDealNone} 
+          onChange={(e) => setHbDealNone([...e.target.selectedOptions].map(option => option.value))} 
+          multiple
           required
         >
           <option value="448131355960">ramkt</option>
