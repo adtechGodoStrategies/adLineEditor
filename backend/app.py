@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import _locale
-import create_lines
+from create_lines import create_lines
+from update_lines import update_lines
 
 _locale._getdefaultlocale = (lambda *args: ['en_US', 'UTF-8'])
 
@@ -13,12 +14,22 @@ CORS(app, supports_credentials=True)
 def generate():
     data = request.get_json()
     print('Received Data:', data)
+    try:
+        resultado = create_lines(data)
+        return jsonify({'resultado': resultado})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-    result = create_lines.create_lines(data)
-    if 'error' in result:
-        return jsonify(result), 400
 
-    return jsonify(result)
+@app.route('/update', methods=['POST'])
+def update():
+    data = request.get_json()
+    print('Received Data:', data)
+    try:
+        resultado = update_lines(data)
+        return jsonify({'resultado': resultado})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == '__main__':

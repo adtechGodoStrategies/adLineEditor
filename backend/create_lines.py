@@ -1,6 +1,6 @@
 import time
 from datetime import datetime
-from googleads import ad_manager
+from googleads import ad_manager, errors
 
 ORDER_LINE_ITEM_LIMIT = 100
 RETRY_LIMIT = 3
@@ -14,8 +14,8 @@ network_service = ad_manager_client.GetService(
 
 def create_lines(data):
     orden = data.get('orden')
-    price = float(data.get('price', 12.0))
-    limit = float(data.get('limit', 20.0))
+    start_price = float(data.get('startPrice', 12.0))
+    end_price = float(data.get('endPrice', 20.0))
     line_name_template = data.get('line_name_template')
     lineItemType = data.get('lineItemType')
     priority = data.get('priority')
@@ -87,8 +87,8 @@ def create_lines(data):
         except ValueError:
             raise ValueError('Invalid end date or time format')
 
-    filename = f"line_items_create_lines_lv_anot_{str(price)}_to_{
-        str(limit)}.txt"
+    filename = f"line_items_create_lines_lv_anot_{
+        str(start_price)}_to_{str(end_price)}.txt"
     with open(filename, "a") as f:
         updated_count = 0
 
@@ -238,7 +238,7 @@ def create_lines(data):
                     print(f"New Line Item created with ID {
                           created_line_item['id']} and name {created_line_item['name']}")
                     return created_line_item['id'], created_line_item['name']
-                except ad_manager.errors.AdManagerError as e:
+                except errors.GoogleAdsServerFault as e:
                     if "CONCURRENT_MODIFICATION" in str(e):
                         print(f"Concurrent modification error, attempt {
                               attempt + 1}/{RETRY_LIMIT}. Retrying in {RETRY_DELAY} seconds...")
@@ -271,7 +271,7 @@ def create_lines(data):
             creative_association = {
                 'creativeId': created_creative, 'lineItemId': created_line_item}
             line_item_creative_association_service.createLineItemCreativeAssociations([
-                creative_association])
+                                                                                      creative_association])
             f.write(f"Creative assigned to Line Item with ID {
                     created_creative}\n")
             print(f"Creative assigned to Line Item with ID {created_creative}")
@@ -318,11 +318,12 @@ def create_lines(data):
         existing_line_item_count = len(line_items)
         batch_count = 0
 
-        while price <= limit:
+        price = start_price
+        while price <= end_price:
             id_price = get_all_hb_pb("{:.2f}".format(price))
             batch_line_item_count = 0
 
-            while batch_line_item_count < ORDER_LINE_ITEM_LIMIT and price <= limit:
+            while batch_line_item_count < ORDER_LINE_ITEM_LIMIT and price <= end_price:
                 line_name = f"{line_name_template} {price}"
                 try:
                     line_item_id, line_item_name = create_line_item(
