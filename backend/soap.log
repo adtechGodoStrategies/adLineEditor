@@ -9786,3 +9786,176 @@
 [2024-08-27 17:14:45,757 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
 [2024-08-27 17:14:45,799 - WARNING] werkzeug:  * Debugger is active!
 [2024-08-27 17:14:45,803 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-08-28 15:49:21,351 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-08-28 15:49:22,571 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-08-28 15:49:22,696 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-08-28 15:49:22,696 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-08-28 15:49:22,696 - INFO] werkzeug:  * Restarting with stat
+[2024-08-28 15:49:23,634 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-08-28 15:49:23,857 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-08-28 15:49:23,899 - WARNING] werkzeug:  * Debugger is active!
+[2024-08-28 15:49:23,899 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-08-28 15:54:48,993 - INFO] werkzeug: 127.0.0.1 - - [28/Aug/2024 15:54:48] "OPTIONS /generate HTTP/1.1" 200 -
+[2024-08-28 15:54:49,019 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-08-28 15:54:51,496 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-08-28 15:54:53,418 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-08-28 15:54:56,481 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-08-28 15:54:57,391 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-08-28 15:54:59,510 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-08-28 15:55:00,511 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-08-28 15:55:02,273 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-08-28 15:55:03,238 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-08-28 15:55:04,506 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-08-28 15:55:05,432 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-08-28 15:55:06,558 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-08-28 15:55:07,581 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-08-28 15:55:08,861 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-08-28 15:55:09,891 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-08-28 15:55:10,757 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-08-28 15:55:11,761 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-08-28 15:55:13,139 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-08-28 15:55:14,268 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-08-28 15:55:15,421 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-09-02 13:03:00,907 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-02 13:03:02,227 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-02 13:03:02,343 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-09-02 13:03:02,343 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-09-02 13:03:02,349 - INFO] werkzeug:  * Restarting with stat
+[2024-09-02 13:03:03,343 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-02 13:03:03,579 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-02 13:03:03,632 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-02 13:03:03,635 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-02 13:04:58,364 - INFO] werkzeug: 127.0.0.1 - - [02/Sep/2024 13:04:58] "OPTIONS /generate HTTP/1.1" 200 -
+[2024-09-02 13:04:58,406 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-09-02 13:05:00,020 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-02 13:05:01,952 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-02 13:05:04,577 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:05,520 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:06,423 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:07,367 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:08,256 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:09,186 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:10,129 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:11,054 - INFO] googleads.soap: Request made: Service: "CustomTargetingService" Method: "getCustomTargetingValuesByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/CustomTargetingService"
+[2024-09-02 13:05:11,982 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-02 13:05:14,034 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-02 13:05:15,160 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-09-02 13:05:16,507 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-09-02 13:05:17,106 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-02 13:05:17,926 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-02 13:05:18,978 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-09-02 13:05:19,602 - INFO] googleads.soap: Request made: Service: "LineItemCreativeAssociationService" Method: "createLineItemCreativeAssociations" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemCreativeAssociationService"
+[2024-09-02 13:05:20,653 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "createLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-02 13:05:22,004 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-02 13:05:22,986 - INFO] googleads.soap: Request made: Service: "CreativeService" Method: "createCreatives" URL: "https://ads.google.com/apis/ads/publisher/v202405/CreativeService"
+[2024-09-03 10:26:36,065 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 10:26:37,228 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 10:26:37,327 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-09-03 10:26:37,327 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-09-03 10:26:37,332 - INFO] werkzeug:  * Restarting with stat
+[2024-09-03 10:26:38,374 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 10:26:38,571 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 10:26:38,608 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-03 10:26:38,620 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-03 13:38:49,636 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\create_lines.py', reloading
+[2024-09-03 13:38:49,794 - INFO] werkzeug:  * Restarting with stat
+[2024-09-03 13:38:50,985 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 13:38:52,034 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 13:38:52,085 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-03 13:38:52,087 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-03 15:18:15,177 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\update_lines.py', reloading
+[2024-09-03 15:18:15,261 - INFO] werkzeug:  * Restarting with stat
+[2024-09-03 15:18:16,638 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:18:17,683 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:18:17,737 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-03 15:18:17,740 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-03 15:19:07,570 - INFO] werkzeug:  * Detected change in 'C:\\Users\\abuch\\Desktop\\API_modify_lines_GAM_REACT\\api-modify-lines-gam\\backend\\create_lines.py', reloading
+[2024-09-03 15:19:07,654 - INFO] werkzeug:  * Restarting with stat
+[2024-09-03 15:19:08,776 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:19:09,004 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:19:09,053 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-03 15:19:09,057 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-03 15:27:54,041 - INFO] werkzeug: 127.0.0.1 - - [03/Sep/2024 15:27:54] "OPTIONS /update HTTP/1.1" 200 -
+[2024-09-03 15:27:54,057 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-09-03 15:27:55,928 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-03 15:27:57,835 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:27:59,909 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:01,091 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:01,849 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:02,940 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:03,712 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:04,388 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:26,805 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:28:26,981 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:28:27,050 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-09-03 15:28:27,050 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-09-03 15:28:27,051 - INFO] werkzeug:  * Restarting with stat
+[2024-09-03 15:28:27,972 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:28:28,166 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:28:28,216 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-03 15:28:28,217 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-03 15:28:52,374 - INFO] werkzeug: 127.0.0.1 - - [03/Sep/2024 15:28:52] "OPTIONS /update HTTP/1.1" 200 -
+[2024-09-03 15:28:52,393 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-09-03 15:28:54,050 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-03 15:28:54,550 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:56,898 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:58,007 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:28:59,166 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:29:00,389 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:31:23,204 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:31:23,384 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:31:23,436 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-09-03 15:31:23,436 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-09-03 15:31:23,442 - INFO] werkzeug:  * Restarting with stat
+[2024-09-03 15:31:24,402 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:31:24,639 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-03 15:31:24,678 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-03 15:31:24,681 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-03 15:33:47,923 - INFO] werkzeug: 127.0.0.1 - - [03/Sep/2024 15:33:47] "OPTIONS /update HTTP/1.1" 200 -
+[2024-09-03 15:33:47,943 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-09-03 15:33:49,662 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-03 15:33:50,164 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:33:52,632 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:33:53,272 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:33:54,492 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-03 15:33:55,621 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:05:37,440 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:05:38,288 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:05:38,401 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-09-05 13:05:38,401 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-09-05 13:05:38,407 - INFO] werkzeug:  * Restarting with stat
+[2024-09-05 13:05:39,944 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:05:40,256 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:05:40,315 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-05 13:05:40,320 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-05 13:20:06,042 - INFO] werkzeug: 127.0.0.1 - - [05/Sep/2024 13:20:06] "OPTIONS /update HTTP/1.1" 200 -
+[2024-09-05 13:20:06,064 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-09-05 13:20:08,094 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-05 13:20:10,073 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:20:12,673 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:20:13,950 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:20:14,592 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:20:15,798 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:26:19,993 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:26:20,241 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:26:20,293 - INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-09-05 13:26:20,293 - INFO] werkzeug: [33mPress CTRL+C to quit[0m
+[2024-09-05 13:26:20,294 - INFO] werkzeug:  * Restarting with stat
+[2024-09-05 13:26:21,248 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:26:21,469 - WARNING] googleads.common: Your default encoding, cp1252, is not UTF-8. Please run this script with UTF-8 encoding to avoid errors.
+[2024-09-05 13:26:21,504 - WARNING] werkzeug:  * Debugger is active!
+[2024-09-05 13:26:21,507 - INFO] werkzeug:  * Debugger PIN: 142-505-932
+[2024-09-05 13:27:06,871 - INFO] werkzeug: 127.0.0.1 - - [05/Sep/2024 13:27:06] "OPTIONS /update HTTP/1.1" 200 -
+[2024-09-05 13:27:06,894 - INFO] googleads.soap: Request made: Service: "NetworkService" Method: "getAllNetworks" URL: "https://ads.google.com/apis/ads/publisher/v202405/NetworkService"
+[2024-09-05 13:27:08,553 - INFO] googleads.soap: Request made: Service: "OrderService" Method: "getOrdersByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/OrderService"
+[2024-09-05 13:27:09,025 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "getLineItemsByStatement" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:27:11,368 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:27:12,526 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"
+[2024-09-05 13:27:13,172 - INFO] googleads.soap: Request made: Service: "LineItemService" Method: "updateLineItems" URL: "https://ads.google.com/apis/ads/publisher/v202405/LineItemService"

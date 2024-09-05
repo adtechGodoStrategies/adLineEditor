@@ -101,7 +101,10 @@ function App() {
         hbDeal,
         hbDealNone,
         hbDealRemove,
-        hbDealNoneRemove
+        hbDealNoneRemove,
+        lineItemType,
+        priority,
+        expectedCreative
       })
     });
 
@@ -121,7 +124,7 @@ function App() {
     <div className="App">
       <h1>Gestor de Líneas</h1>
       {!mode && (
-        <div>
+        <div className="buttons-app">
           <button onClick={() => setMode('create')}>Crear Líneas</button>
           <button onClick={() => setMode('update')}>Actualizar Líneas</button>
         </div>
@@ -392,7 +395,6 @@ function App() {
             id="orden"
             value={orden}
             onChange={(e) => setOrden(e.target.value)}
-            required
           />
           <label htmlFor="hbDeal">HB Deal (IS any of):</label>
           <select
@@ -400,7 +402,6 @@ function App() {
             value={hbDeal}
             onChange={(e) => setHbDeal([...e.target.selectedOptions].map(option => option.value))}
             multiple
-            required
           >
             <option value="448131355960">ramkt</option>
             <option value="448290974564">appnexus</option>
@@ -415,7 +416,6 @@ function App() {
             value={hbDealNone}
             onChange={(e) => setHbDealNone([...e.target.selectedOptions].map(option => option.value))}
             multiple
-            required
           >
             <option value="448131355960">ramkt</option>
             <option value="448290974564">appnexus</option>
@@ -451,6 +451,31 @@ function App() {
             <option value="448148134169">1jtx0Zr90r</option>
             <option value="448995234300">86a6fb0e60</option>
             <option value="448148134169">1jtx0Zr90r</option>
+          </select>
+          <label htmlFor="lineItemType">Line Type:</label>
+          <input
+            type="text"
+            id="lineItemType"
+            value={lineItemType}
+            onChange={(e) => setLineItemType(e.target.value.toUpperCase())}
+          />
+          <label htmlFor="priority">Priority value:</label>
+          <input
+            type="number"
+            id="priority"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+          />
+          <label htmlFor="expectedCreative">Expected Creative Size:</label>
+          <select
+            id="expectedCreative"
+            value={expectedCreative}
+            onChange={(e) => setExpectedCreative(e.target.value)}
+          >
+            <option value="">Selecciona una opción</option>
+            <option value="728x90">728x90</option>
+            <option value="1x1">1x1</option>
+            <option value="300x300">300x300</option> {/* Nueva opción añadida */}
           </select>
           <button type="submit" disabled={isProcessing}>Actualizar Línea</button>
           <button type="button" onClick={() => setMode('')}>Volver al inicio</button>

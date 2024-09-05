@@ -40,6 +40,10 @@ button {
   transition: background-color 0.3s ease;
 }
 
+.buttons-app{
+  display: flex;
+  justify-content: space-around;
+}
 button:disabled {
   background-color: #ccc;
 }

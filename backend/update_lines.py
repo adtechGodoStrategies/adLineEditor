@@ -17,6 +17,10 @@ def update_lines(data):
     hbDealNone = data.get('hbDealNone', [])
     hbDealRemove = data.get('hbDealRemove', [])
     hbDealNoneRemove = data.get('hbDealNoneRemove', [])
+    lineItemType = data.get('lineItemType')  # New field to update lineItemType
+    priority = data.get('priority')  # New field to update priority
+    # Recogemos el tamaño de la creatividad que el usuario introduce.
+    expectedCreative = data.get('expectedCreative')
 
     filename = f"line_items_update_lines_{orden}_{
         datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
@@ -76,6 +80,25 @@ def update_lines(data):
                 'LineItemService', version='v202405')
             line_item['allowOverbook'] = True
             line_item['skipInventoryCheck'] = True
+
+           # Update lineItemType and priority if provided
+            if lineItemType:
+                line_item['lineItemType'] = lineItemType
+            if priority:
+                line_item['priority'] = int(priority)
+
+            # Update creative size if provided
+            if expectedCreative:
+                width, height = expectedCreative.split('x')
+                new_creative = {'size': {'width': width,
+                                         'height': height}, 'creativeSizeType': 'PIXEL'}
+
+                # Si ya hay placeholders, añadimos la nueva creatividad
+                if 'creativePlaceholders' in line_item:
+                    line_item['creativePlaceholders'].append(new_creative)
+                else:
+                    # Si no hay placeholders, creamos uno con la nueva creatividad
+                    line_item['creativePlaceholders'] = [new_creative]
 
             if 'targeting' in line_item and 'customTargeting' in line_item['targeting']:
                 custom_targeting = line_item['targeting']['customTargeting']
