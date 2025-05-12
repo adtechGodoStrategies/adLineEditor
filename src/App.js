@@ -31,6 +31,13 @@ function App() {
   const [hbDealNoneRemove, setHbDealNoneRemove] = useState([]);
   const [resultado, setResultado] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [minCPM, setMinCPM] = useState(4.0); // Valor por defecto 4€
+  const [startTimeOption, setStartTimeOption] = useState("IMMEDIATELY");
+  const [startDate, setStartDate] = useState("");
+  const [startTime, setStartTime] = useState("00:00");
+  const [endTimeOption, setEndTimeOption] = useState("UNLIMITED");
+
+  
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
@@ -104,10 +111,17 @@ function App() {
         hbDealNoneRemove,
         lineItemType,
         priority,
-        expectedCreative
+        expectedCreative,
+        minCPM ,
+        startTimeOption,  
+        startDate,       
+        startTime,    
+        endTimeOption,    
+        endDate,          
+        endTime         
       })
     });
-
+    
     if (response.ok) {
       const data = await response.json();
       setResultado(data.resultado);
@@ -466,17 +480,82 @@ function App() {
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
           />
-          <label htmlFor="expectedCreative">Expected Creative Size:</label>
+          <label htmlFor="expectedCreative">Expected Creative Sizes:</label>
           <select
             id="expectedCreative"
             value={expectedCreative}
-            onChange={(e) => setExpectedCreative(e.target.value)}
+            onChange={(e) => setExpectedCreative([...e.target.selectedOptions].map(option => option.value))}
+            multiple
           >
-            <option value="">Selecciona una opción</option>
             <option value="728x90">728x90</option>
             <option value="1x1">1x1</option>
-            <option value="300x300">300x300</option> {/* Nueva opción añadida */}
+            <option value="300x250">300x250</option>
           </select>
+          <label htmlFor="minCPM">CPM Mínimo (€):</label>
+            <input
+              type="number"
+              id="minCPM"
+              value={minCPM}
+              onChange={(e) => setMinCPM(parseFloat(e.target.value))}
+          />
+          <label htmlFor="startTimeOption">Start Time:</label>
+          <select
+            id="startTimeOption"
+            value={startTimeOption}
+            onChange={(e) => setStartTimeOption(e.target.value)}
+          >
+            <option value="IMMEDIATELY">Immediately</option>
+            <option value="ONE_HOUR">One Hour from Now</option>
+            <option value="CUSTOM">Custom Date</option>
+          </select>
+          {startTimeOption === "CUSTOM" && (
+            <>
+              <input
+                type="text"
+                id="startDate"
+                placeholder="DD/MM/YYYY"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                required
+              />
+              <input
+                type="time"
+                id="startTime"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                required
+              />
+            </>
+          )}
+
+          <label htmlFor="endTimeOption">End Time:</label>
+          <select
+            id="endTimeOption"
+            value={endTimeOption}
+            onChange={(e) => setEndTimeOption(e.target.value)}
+          >
+            <option value="UNLIMITED">Unlimited</option>
+            <option value="CUSTOM">Custom End Date</option>
+          </select>
+          {endTimeOption === "CUSTOM" && (
+            <>
+              <input
+                type="text"
+                id="endDate"
+                placeholder="DD/MM/YYYY"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                required
+              />
+              <input
+                type="time"
+                id="endTime"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                required
+              />
+            </>
+          )}
           <button type="submit" disabled={isProcessing}>Actualizar Línea</button>
           <button type="button" onClick={() => setMode('')}>Volver al inicio</button>
         </form>

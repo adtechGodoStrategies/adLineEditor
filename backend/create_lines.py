@@ -4,7 +4,7 @@ from googleads import ad_manager, errors
 
 ORDER_LINE_ITEM_LIMIT = 100
 RETRY_LIMIT = 3
-RETRY_DELAY = 5  # seconds
+RETRY_DELAY = 5
 
 # Load the Ad Manager client details from stored authorization.
 ad_manager_client = ad_manager.AdManagerClient.LoadFromStorage()
@@ -124,21 +124,27 @@ def create_lines(data):
                 return None
             return order_id
 
-        def select_and_print_lines(order_id):
-            line_item_service = ad_manager_client.GetService(
-                'LineItemService', version='v202405')
-            statement = (ad_manager.StatementBuilder().Where(
-                'orderId = :orderId').WithBindVariable('orderId', int(order_id)))
-            response = line_item_service.getLineItemsByStatement(
-                statement.ToStatement())
+        def select_and_print_lines(order_id, min_cpm=4.0):  # min_cpm en euros
+            line_item_service = ad_manager_client.GetService('LineItemService', version='v202405')
+            statement = (ad_manager.StatementBuilder().Where('orderId = :orderId').WithBindVariable('orderId', int(order_id)))
+            response = line_item_service.getLineItemsByStatement(statement.ToStatement())
+            
             line_items = getattr(response, 'results', [])
-            f.write(f"Found {len(line_items)
-                             } line items for Order {order_id}\n")
-            print(f"Found {len(line_items)} line items for Order {order_id}")
+            filtered_line_items = []
+
             for line in line_items:
-                f.write(f"Name: {line['name']}\nID: {line['id']}\n")
-                print(f"Name: {line['name']}\nID: {line['id']}")
-            return line_items
+                cpm_micro_amount = line['costPerUnit']['microAmount']
+                cpm_euros = cpm_micro_amount / 1_000_000  # Convertimos microAmount a euros
+
+                if cpm_euros >= min_cpm:
+                    filtered_line_items.append(line)  # Solo guardamos líneas con CPM >= 4€
+                    print(f"✅ Line Item {line['id']} ({line['name']}) cumple con CPM {cpm_euros}€ (se actualizará).")
+                else:
+                    print(f"❌ Line Item {line['id']} ({line['name']}) tiene CPM {cpm_euros}€ (NO se actualizará).")
+
+            print(f"Total líneas seleccionadas para actualización: {len(filtered_line_items)}")
+            return filtered_line_items
+
 
         def create_line_item(order_id, line_name, price, id_price):
             line_item_service = ad_manager_client.GetService(
